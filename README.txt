@@ -6,4 +6,4 @@ README
 - Dauer (in Stunden): ca. 5h
 
 - Skill-Erweiterung im Anwenden von Twig
-- Erweiterung: Anpassung an Browsereinstellungen (Darstellungsmodus: Dunkel/Hell)
+- Erweiterung: Anpassung an Browsereinstellungen Darstellungsmodus: Dunkel/Hell)

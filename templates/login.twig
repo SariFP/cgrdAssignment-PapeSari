@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="{{ base }}css/styles.css" />
+</head>
+<body>
+  <div class="auth">
+    <img src="{{ base }}images/logo.svg" alt="cgrd" class="auth-logo" />
+
+    {% include 'partials/alerts.twig' %}
+
+    <form method="POST" class="auth-card">
+      <input type="text" name="username" placeholder="Username" value="{{ (error ? (username ?? '') : '') }}" class="{{ error ? 'is-invalid' : '' }}" aria-invalid="{{ error ? 'true' : 'false' }}" required />
+      <input type="password" name="password" placeholder="Password" class="{{ error ? 'is-invalid' : '' }}" aria-invalid="{{ error ? 'true' : 'false' }}" required />
+      <button type="submit" class="btn btn-primary auth-btn">Login</button>
+    </form>
+  </div>
+</body>
+</html>

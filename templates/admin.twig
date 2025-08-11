@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>News</title>
+    <link rel="stylesheet" href="{{ base }}css/styles.css" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    <script src="{{ base }}js/admin.js" defer></script>
+  </head>
+  <body>
+    <div class="auth">
+      <img src="{{ base }}images/logo.svg" alt="cgrd" class="auth-logo" />
+
+      {% include 'partials/alerts.twig' %}
+
+      {% if newsList|length > 0 %}
+        <div class="news-box">
+          <div class="news-head">All News</div>
+
+          {% for n in newsList %}
+            <div class="news-item">
+              <div class="news-main">
+                <span class="chip">{{ n.title }}</span>
+                <span class="news-desc">{{ n.content }}</span>
+              </div>
+
+              <div class="news-actions">
+                <button type="button"
+                        class="icon-btn edit-btn"
+                        title="Edit"
+                        aria-label="Edit"
+                        data-id="{{ n.id }}"
+                        data-title="{{ n.title }}"
+                        data-content="{{ n.content|e('html_attr') }}">
+                  <img src="{{ base }}images/pencil.svg" alt="Edit" />
+                </button>
+
+                <form method="POST" class="inline" onsubmit="return confirm('News wirklich löschen?')">
+                  <input type="hidden" name="action" value="delete" />
+                  <input type="hidden" name="delete_id" value="{{ n.id }}" />
+                  <button type="submit" class="icon-btn" title="Delete" aria-label="Delete">
+                    <img src="{{ base }}images/close.svg" alt="Delete" />
+                  </button>
+                </form>
+              </div>
+            </div>
+          {% endfor %}
+
+        </div>
+      {% endif %}
+
+      <div class="form-card">
+        <div class="form-title">Create News</div>
+        <form method="POST" id="news-form">
+          <input type="hidden" name="id" id="news-id" />
+          <input type="hidden" name="action" id="action" value="create" />
+          <input type="text" name="title" id="title" placeholder="Title" required />
+          <textarea name="content" id="content" rows="10" placeholder="Description" required></textarea>
+
+          <button type="submit" class="btn btn-primary block" id="save-btn">Create</button>
+        </form>
+
+        <form method="GET" action="{{ base }}logout.php" class="mt-8">
+          <button type="submit" class="btn btn-primary block outline-dark">Logout</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+{# templates/partials/alerts.twig #}
+{% if flash_success %}
+  <div class="alert success centered">{{ flash_success }}</div>
+{% endif %}
+{% if flash_error %}
+  <div class="alert error centered">{{ flash_error }}</div>
+{% endif %}
